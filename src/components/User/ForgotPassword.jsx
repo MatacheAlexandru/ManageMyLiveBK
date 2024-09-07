@@ -9,15 +9,15 @@ import {
   MDBInput,
   MDBIcon,
 } from "mdb-react-ui-kit";
-import styles from "./LoginSingUp.module.css"; // Import stilizarea background-ului
-import { useNavigate } from "react-router-dom"; // Importă useNavigate
+import styles from "./LoginSingUp.module.css"; 
+import { useNavigate } from "react-router-dom"; 
 
 function ForgotPassword() {
-  const navigate = useNavigate(); // Inițializează useNavigate
+  const navigate = useNavigate();
 
   const handleForgotPassword = () => {
-    // Aici ai putea adăuga logica de resetare a parolei
-    navigate("/"); // Redirecționează către pagina de login după resetare
+    
+    navigate("/");
   };
 
   return (
@@ -30,7 +30,7 @@ function ForgotPassword() {
         }}
       >
         <MDBCardBody>
-          {/* Butonul de "Back" cu iconiță spre stânga */}
+        
           <div className="d-flex justify-content-start mb-2">
             <MDBBtn
               color="primary"
@@ -98,7 +98,7 @@ function ForgotPassword() {
             >
               <img
                 alt="Your Company"
-                src="/ForgotLogo.svg" // Poți înlocui cu un logo specific pentru pagina ForgotPassword
+                src="/ForgotLogo.svg"
                 className="img-fluid mb-3 w-90 w-sm-75 w-md-50 w-lg-50 h-auto"
               />
             </MDBCol>
