@@ -16,7 +16,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Register />} />
         <Route path="/forgot" element={<ForgotPassword />} />
-        {/* Adaugă wildcard-ul "*" aici */}
+        
         <Route path="/dashboard/*" element={<Dashboard />} />
       </Routes>
     </Router>
