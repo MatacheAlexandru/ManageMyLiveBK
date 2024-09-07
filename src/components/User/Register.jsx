@@ -11,15 +11,15 @@ import {
   MDBCheckbox,
 } from "mdb-react-ui-kit";
 import styles from "./LoginSingUp.module.css";
-import { useNavigate } from "react-router-dom"; // Importă useNavigate
+import { useNavigate } from "react-router-dom"; 
 
 function Register() {
-  const navigate = useNavigate(); // Inițializează useNavigate
+  const navigate = useNavigate(); 
 
-  // Funcție pentru a redirecționa către login după apăsarea pe "Register"
+  
   const handleRegister = () => {
-    // Aici ai putea adăuga logica de înregistrare
-    navigate("/"); // Redirecționează către pagina de login
+    
+    navigate("/"); 
   };
 
   return (
@@ -32,7 +32,7 @@ function Register() {
         }}
       >
         <MDBCardBody>
-          {/* Butonul de "Back" cu iconiță spre stânga */}
+          
           <div className="d-flex justify-content-start mb-2">
             <MDBBtn
               color="primary"
