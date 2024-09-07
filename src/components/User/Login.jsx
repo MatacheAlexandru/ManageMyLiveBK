@@ -10,31 +10,31 @@ import {
 import { useNavigate } from "react-router-dom";
 import styles from "./LoginSingUp.module.css";
 function Login() {
-  // Starea pentru email și parolă
+  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  // Hook-ul pentru redirecționare
+  
   const navigate = useNavigate();
 
-  // Datele "admin" predefinite
+  
   const adminCredentials = {
     email: "admin@example.com",
     password: "admin123",
   };
 
-  // Funcția de autentificare
+  
   const handleLogin = (e) => {
     e.preventDefault();
     if (
       email === adminCredentials.email &&
       password === adminCredentials.password
     ) {
-      // Autentificare reușită, redirecționare către dashboard
+     
       navigate("/dashboard");
     } else {
-      // Setează un mesaj de eroare
+      
       setError("Invalid email or password");
     }
   };
@@ -65,7 +65,7 @@ function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 labelClass="text-white"
-                className="text-white custom-input" // Aplică clasa personalizată
+                className="text-white custom-input"
               />
             </div>
 
@@ -77,7 +77,7 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 labelClass="text-white"
-                className="text-white custom-input" // Aplică clasa personalizată
+                className="text-white custom-input" 
               />
             </div>
           </div>
