@@ -1,0 +1,275 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+@media (max-width: 768px) {
+  .element {
+    box-shadow: none;
+    border: none;
+  }
+}
+
+/*--------------HEADER---------------*/
+@media (min-width: 640px) {
+  .half-border-bottom::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 70%;
+    height: 2px;
+    background-color: #9a9a9a;
+  }
+}
+
+/*--------------MENU---------------*/
+.bgMenu {
+  background: linear-gradient(
+    180deg,
+    rgba(31, 41, 55, 1) 10rem,
+    rgb(255, 255, 255) 30rem,
+    #ffffff 30rem
+  );
+}
+
+.bgMenuButtons {
+  position: relative;
+  right: 0rem;
+  bottom: 2rem;
+  height: 20rem;
+  background: linear-gradient(
+    to bottom,
+    rgba(31, 41, 55, 1) 0%,
+    rgba(31, 41, 55, 0.7) 80%,
+    rgba(31, 41, 55, 0.2) 90%,
+    rgba(31, 41, 55, 0) 100%
+  );
+}
+
+.bgMenuButtons::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 2px;
+  height: 20rem;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #9a9a9a 20%,
+    #9a9a9a 20%,
+    transparent 100%
+  );
+}
+
+/* ---------------CARD-HOME----------------*/
+.positionCardHome {
+  position: relative;
+  right: 1.7rem;
+}
+
+@media screen and (max-width: 500px) {
+  .positionCardHome {
+    position: relative;
+    right: 0;
+  }
+  .bkCreateEvent {
+    background-color: #e8eaec49 !important;
+    font-weight: 700 !important;
+    position: relative;
+    left: 0.3rem;
+  }
+}
+
+.bkCreateEvent {
+  background-color: #e8eaec49 !important;
+  font-weight: 700 !important;
+  position: relative;
+  right: 1.7rem;
+}
+
+.custom-font {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  border: solid 2px #d3d5d849;
+  max-width: 30rem;
+  margin: 0 auto;
+  color: #d3d5d8ce;
+  border-radius: 30px;
+  position: relative;
+  right: 1rem;
+}
+
+.bgCardHome {
+  background-color: #ffffff79 !important;
+  border: solid 2px #d3d5d849;
+  max-width: 90%;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  border-radius: 30px;
+}
+.flexCardBody {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.addCardHome {
+  background: radial-gradient(
+    circle,
+    rgba(249, 249, 249, 1) 0%,
+    rgba(48, 48, 48, 1) 100%
+  );
+  color: #082c31de !important;
+  margin: 1rem 0;
+}
+
+.titlecardHome {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: rgba(31, 41, 55, 1) !important;
+  text-align: center;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.edit-icon {
+  color: rgb(58, 58, 245);
+  cursor: pointer;
+  font-size: 1.3rem;
+
+  transition: color 0.3s ease;
+  margin-top: 0.4rem;
+  margin-right: 0.5rem;
+}
+
+.edit-icon:hover {
+  color: rgba(58, 58, 245, 0.603);
+}
+
+.trash-icon {
+  color: red;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 1rem;
+}
+
+.trash-icon:hover {
+  color: rgba(255, 0, 0, 0.452);
+}
+
+.CardEventStyles {
+  background: #d8d6d683 !important;
+  border: solid 2px #d3d5d849 !important;
+  width: 90%;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  border-radius: 30px;
+  margin-bottom: 1rem;
+}
+
+/*--------------Event Modal---------------*/
+.bgEventModal {
+  background: linear-gradient(
+    0deg,
+    rgba(31, 41, 55, 1) 1%,
+    rgba(173, 187, 228, 1) 100%
+  );
+}
+
+.bgEventTitle {
+  background: #ffffff65 !important;
+  color: white !important;
+  font-family: "Roboto", sans-serif !important;
+  font-weight: 700 !important;
+}
+
+.bgEventTitle::placeholder {
+  color: white !important;
+}
+
+.bgEventTitle:focus {
+  border-color: white !important;
+  box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.5) !important;
+}
+
+.bgEventTitle:focus + label {
+  color: white !important;
+}
+
+/*---------AddSubCardModal-------------------*/
+.bgAddCardModal {
+  background: linear-gradient(
+    0deg,
+    rgba(31, 41, 55, 1) 1%,
+    rgba(173, 187, 228, 1) 100%
+  );
+}
+
+/*
+#adbbe4
+#1f2937
+*/
+
+.dropdown-item-custom {
+  background: linear-gradient(
+    151deg,
+    rgba(31, 41, 55, 1) 0%,
+    rgba(173, 187, 228, 1) 76%
+  );
+  color: #ffffff;
+  border-radius: 0.375rem;
+  padding: 10px;
+  transition: background 0.4s ease, color 0.4s ease;
+}
+
+.dropdown-item-custom:hover {
+  background: linear-gradient(
+    295deg,
+    rgba(173, 187, 228, 1) 20%,
+    rgba(31, 41, 55, 1) 80%
+  );
+  color: #ffffff;
+  box-shadow: 0px 4px 10px rgba(31, 41, 55, 0.2);
+}
+
+.bgMebuDropdown {
+  background: linear-gradient(
+    180deg,
+    rgba(165, 184, 207, 1) 41%,
+    rgba(255, 255, 255, 1) 76%
+  );
+}
+.positionCategoryNew {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.trash-iconAdd {
+  color: rgb(73, 72, 72);
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.inputCreateCategory {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btnAddCategory {
+  background: linear-gradient(
+    50deg,
+    rgba(165, 184, 207, 1) 41%,
+    rgb(216, 216, 216) 76%
+  );
+  color: #082c31de !important;
+  height: 2rem;
+}

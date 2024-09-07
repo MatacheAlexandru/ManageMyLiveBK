@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "module": "CommonJS", // Modul CommonJS pentru Node.js
+    "target": "ESNext", // Versiune modernă a ECMAScript
+    "outDir": "./dist", // Directorul de ieșire pentru fișierele compilate
+    "strict": true, // Activează modul strict TypeScript
+    "esModuleInterop": true, // Permite interoperabilitatea între modulele ES și CommonJS
+    "skipLibCheck": true, // Sari peste verificarea tipurilor în fișierele din librării
+    "moduleResolution": "node", // Rezolvarea modulelor în stil Node.js
+    "forceConsistentCasingInFileNames": true // Asigură consistența numelor de fișiere
+  },
+  "include": ["src/**/*"], // Include toate fișierele din folderul `src`
+  "exclude": ["node_modules"] // Exclude folderul `node_modules`
+}

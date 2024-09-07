@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx", // Permite suport JSX
+    "module": "ESNext", // Modulul specificat pentru aplicațiile moderne
+    "target": "ESNext", // Target pentru versiunea modernă de ECMAScript
+    "strict": true, // Activează modul strict TypeScript
+    "baseUrl": ".", // Permite utilizarea căilor relative
+    "paths": {
+      "@/*": ["./src/*"] // Maparea căilor pentru a folosi `@/` ca alias pentru `src`
+    },
+    "moduleResolution": "node", // Modul de rezolvare module pentru Node.js
+    "esModuleInterop": true, // Permite interoperabilitatea între ES și CommonJS
+    "skipLibCheck": true, // Dezactivează verificarea de tip pentru fișierele din librării
+    "forceConsistentCasingInFileNames": true // Asigură consistență pentru numele fișierelor
+  },
+  "include": ["src/**/*"], // Include toate fișierele din folderul `src`
+  "exclude": ["node_modules"] // Exclude folderul `node_modules`
+}
