@@ -23,9 +23,9 @@ import {
 import { onAuthStateChanged } from "firebase/auth";
 import EventModal from "../EventModal/EventModal";
 import { IoIosArrowUp } from "react-icons/io";
-import styles from "./CardP.module.css";
+import styles from "./CardB.module.css";
 import "../../../../../../Styles.css";
-import AddSubCardModal from "./AddSubCardPet/AddSubCardModalPet";
+import AddSubCardModal from "./AddSubCardBirthDay/AddSubCardModalBirthDay";
 
 const getFileType = async (fileUrl) => {
   const fileRef = ref(storage, fileUrl);
@@ -33,32 +33,36 @@ const getFileType = async (fileUrl) => {
   return metadata.contentType;
 };
 //al doilea pas
-const loadCardsFromFirestore = async (user, setCardsPet) => {
+const loadCardsFromFirestore = async (user, setCardBirthDay) => {
   try {
-    const docRef = doc(db, `users/${user.uid}/componentP`, "cardsPet"); // Folosește componentP și cardsPet
+    const docRef = doc(db, `users/${user.uid}/componentB`, "CardBirthDay");
     const docSnap = await getDoc(docRef);
     if (docSnap.exists()) {
-      setCardsPet(docSnap.data().cardsPet || []); // Folosește cardsPet
+      setCardBirthDay(docSnap.data().CardBirthDay || []); // Aici folosim cardsAuto
     } else {
-      console.log("No cardsPet found for the user.");
+      console.log("No CardBirthDay found for the user.");
     }
   } catch (error) {
-    console.error("Error loading cardsPet: ", error);
+    console.error("Error loading CardBirthDay: ", error);
   }
 };
 
 //primul pas
-const saveCardsToFirestore = async (user, newCardsPet) => {
+const saveCardsToFirestore = async (user, newCardBirthDay) => {
   try {
-    const docRef = doc(db, `users/${user.uid}/componentP`, "cardsPet"); // Folosește componentP și cardsPet
-    await setDoc(docRef, { cardsPet: newCardsPet }, { merge: true });
-    console.log("CardsPet saved successfully for ComponentP.");
+    // Creează un document sub componentB cu numele cardsAuto
+    const docRef = doc(db, `users/${user.uid}/componentB`, "CardBirthDay");
+
+    // Salvează datele sub câmpul cardsAuto, nu cards
+    await setDoc(docRef, { CardBirthDay: newCardBirthDay }, { merge: true });
+
+    console.log("CardBirthDay saved successfully for ComponentB.");
   } catch (error) {
-    console.error("Error saving cardsPet for ComponentP: ", error);
+    console.error("Error saving CardBirthDay for ComponentB: ", error);
   }
 };
 
-const CardPet = () => {
+const CardBirthDay = () => {
   const [basicModal, setBasicModal] = useState(false);
   const [addModal, setAddModal] = useState(false);
   const [eventTitle, setEventTitle] = useState("");
@@ -165,7 +169,7 @@ const CardPet = () => {
     <MDBContainer fluid className={styles.customBackground}>
       <MDBRow>
         <MDBCol className="text-center z-1">
-          <h2 className="mb-3 custom-font">Create an Event for Pet</h2>
+          <h2 className="mb-3 custom-font">Create an Event for Birthday</h2>
           <MDBBtn className="bkCreateEvent" onClick={toggleModal}>
             Create Event
           </MDBBtn>
@@ -432,4 +436,4 @@ SubCardItem.propTypes = {
   onDelete: PropTypes.func.isRequired,
 };
 
-export default CardPet;
+export default CardBirthDay;

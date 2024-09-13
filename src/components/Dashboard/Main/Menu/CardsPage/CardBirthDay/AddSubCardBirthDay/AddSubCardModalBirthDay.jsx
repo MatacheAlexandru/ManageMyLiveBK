@@ -85,28 +85,16 @@ const AddSubCardModal = ({ addModal, toggleAddModal, handleAddSubCard }) => {
               <MDBDropdownMenu className="w-100 p-2 shadow-lg rounded bgMebuDropdown">
                 {/* Categoriile predefinite */}
                 <MDBDropdownItem
-                  onClick={() => handleSelectCategory("Asigurare")}
+                  onClick={() => handleSelectCategory("Zi de nastere")}
                   className="dropdown-item-custom"
                 >
-                  Asigurare
+                  Zi de nastere
                 </MDBDropdownItem>
                 <MDBDropdownItem
-                  onClick={() => handleSelectCategory("Rovinieta")}
+                  onClick={() => handleSelectCategory("Zi de nume")}
                   className="dropdown-item-custom"
                 >
-                  Rovinieta
-                </MDBDropdownItem>
-                <MDBDropdownItem
-                  onClick={() => handleSelectCategory("ITP")}
-                  className="dropdown-item-custom"
-                >
-                  ITP
-                </MDBDropdownItem>
-                <MDBDropdownItem
-                  onClick={() => handleSelectCategory("Casco")}
-                  className="dropdown-item-custom"
-                >
-                  Casco
+                  Zi de nume
                 </MDBDropdownItem>
 
                 {customCategories.map((customCategory) => (

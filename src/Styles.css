@@ -32,9 +32,9 @@
 
 .bgMenuButtons {
   position: relative;
-  right: 0rem;
-  bottom: 2rem;
-  height: 20rem;
+  left: 0rem;
+  bottom: 1.3rem;
+  height: 25rem;
   background: linear-gradient(
     to bottom,
     rgba(31, 41, 55, 1) 0%,
@@ -54,8 +54,8 @@
   background: linear-gradient(
     to bottom,
     transparent 0%,
-    #9a9a9a 20%,
-    #9a9a9a 20%,
+    #9a9a9a 40%,
+    #9a9a9a 80%,
     transparent 100%
   );
 }
@@ -63,7 +63,7 @@
 /* ---------------CARD-HOME----------------*/
 .positionCardHome {
   position: relative;
-  right: 1.7rem;
+  right: 0rem;
 }
 
 @media screen and (max-width: 500px) {
@@ -100,7 +100,7 @@
 }
 
 .bgCardHome {
-  background-color: #ffffff79 !important;
+  background-color: #ffffff50 !important;
   border: solid 2px #d3d5d849;
   max-width: 90%;
   margin: 0 auto;
@@ -136,17 +136,19 @@
 }
 
 .edit-icon {
-  color: rgb(58, 58, 245);
+  color: rgb(32, 88, 194);
   cursor: pointer;
-  font-size: 1.3rem;
+  font-size: 1.5rem;
 
   transition: color 0.3s ease;
-  margin-top: 0.4rem;
+
   margin-right: 0.5rem;
 }
 
 .edit-icon:hover {
-  color: rgba(58, 58, 245, 0.603);
+  color: rgba(0, 102, 255, 0.603);
+  background-color: #f1efef7c;
+  border-radius: 5px;
 }
 
 .trash-icon {
@@ -162,6 +164,8 @@
 
 .trash-icon:hover {
   color: rgba(255, 0, 0, 0.452);
+  background-color: #f1efef7c;
+  border-radius: 5px;
 }
 
 .CardEventStyles {

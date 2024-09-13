@@ -11,3 +11,10 @@
   padding-right: 2rem;
   position: relative;
 }
+.zoomImage {
+  transition: transform 0.3s ease; /* Adaugă o tranziție lină pentru zoom */
+}
+
+.zoomImage:hover {
+  transform: scale(1.05); /* Mărește imaginea cu 20% la hover */
+}

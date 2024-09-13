@@ -1,0 +1,28 @@
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.logo {
+  height: 10rem;
+  width: auto;
+  z-index: 1;
+}
+
+@media (max-width: 640px) {
+  .logoContainer {
+    max-height: 10rem;
+    margin: 0 auto;
+    position: relative;
+    top: 1rem;
+    left: 2rem;
+  }
+}
+
+@media (max-width: 354px) {
+  .logo {
+    max-height: 7rem;
+  }
+}

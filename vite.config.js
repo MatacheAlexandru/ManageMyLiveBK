@@ -2,10 +2,9 @@ import path from "path";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
-// Setăm baza în funcție de mediul de rulare
 export default defineConfig(({ mode }) => {
   return {
-    base: mode === "production" ? "/ManageMyLiveBK/" : "/", // Folosim baza doar în producție
+    base: mode === "production" ? "/" : "/",
     plugins: [react()],
     resolve: {
       alias: {

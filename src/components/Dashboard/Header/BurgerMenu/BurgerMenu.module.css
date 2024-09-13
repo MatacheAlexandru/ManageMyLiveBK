@@ -1,0 +1,28 @@
+.menuButton {
+  display: flex;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  align-items: center;
+}
+.profileButton {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  color: #9ca3af;
+}
+
+.profileButton:hover {
+  background-color: #374151;
+  color: white;
+}
+
+.profileButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px white;
+  inset: 0;
+}

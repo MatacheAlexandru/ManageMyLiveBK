@@ -8,34 +8,42 @@ import {
   MDBIcon,
 } from "mdb-react-ui-kit";
 import { useNavigate } from "react-router-dom";
-import styles from "./LoginSingUp.module.css";
+import styles from "./LoginSignUp.module.css";
+import { signInWithEmailAndPassword } from "firebase/auth"; // Importă funcția de login
+import { auth } from "../../firebase"; // Importă instanța Firebase Auth
+
 function Login() {
-  // Starea pentru email și parolă
+  // Starea pentru email, parolă și mesajele de eroare
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false); // Stare pentru încărcare
 
   // Hook-ul pentru redirecționare
   const navigate = useNavigate();
 
-  // Datele "admin" predefinite
-  const adminCredentials = {
-    email: "admin@example.com",
-    password: "admin123",
-  };
-
   // Funcția de autentificare
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    if (
-      email === adminCredentials.email &&
-      password === adminCredentials.password
-    ) {
+    setError(""); // Resetăm mesajele de eroare
+    setLoading(true); // Pornim încărcarea
+
+    try {
+      // Autentificare Firebase cu email și parolă
+      await signInWithEmailAndPassword(auth, email, password);
       // Autentificare reușită, redirecționare către dashboard
       navigate("/dashboard");
-    } else {
-      // Setează un mesaj de eroare
-      setError("Invalid email or password");
+    } catch (error) {
+      // Gestionăm erorile și afișăm un mesaj utilizatorului
+      if (error.code === "auth/wrong-password") {
+        setError("Invalid password. Please try again.");
+      } else if (error.code === "auth/user-not-found") {
+        setError("No account found with this email.");
+      } else {
+        setError("Login failed. Please try again.");
+      }
+    } finally {
+      setLoading(false); // Oprim starea de încărcare
     }
   };
 
@@ -46,7 +54,7 @@ function Login() {
           <img
             alt="Your Company"
             src="/Logo.svg"
-            className="h-[9rem] w-[11rem] mb-3 "
+            className="h-[9rem] w-[11rem] mb-3"
           />
           <h3 className="text-center mb-4 text-white">Login</h3>
         </div>
@@ -82,8 +90,8 @@ function Login() {
             </div>
           </div>
 
-          <div className="d-flex flex-column flex-sm-row justify-content-around  mx-3 mb-4">
-            <div className="d-flex justify-content-center justify-content-sm-start  mb-2 mb-sm-0">
+          <div className="d-flex flex-column flex-sm-row justify-content-around mx-3 mb-4">
+            <div className="d-flex justify-content-center justify-content-sm-start mb-2 mb-sm-0">
               <MDBCheckbox
                 name="flexCheck"
                 value=""
@@ -92,9 +100,8 @@ function Login() {
                 labelClass="text-white"
               />
             </div>
-            <div className="d-flex justify-content-center justify-content-sm-start s">
+            <div className="d-flex justify-content-center justify-content-sm-start">
               <Link to="/forgot" className={styles.darkBlueLink}>
-                {" "}
                 Forgot password?
               </Link>
             </div>
@@ -102,9 +109,11 @@ function Login() {
 
           <MDBBtn
             type="submit"
-            className=" mb-4 col-6 col-sm-3 col-md-3 col-lg-3"
+            className="mb-4 col-6 col-sm-3 col-md-3 col-lg-3"
+            disabled={loading} // Butonul este dezactivat dacă se încarcă
           >
-            Sign in
+            {loading ? "Signing in..." : "Sign in"}{" "}
+            {/* Afișează mesajul de încărcare */}
           </MDBBtn>
         </form>
 

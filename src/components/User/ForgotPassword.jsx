@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   MDBBtn,
   MDBContainer,
@@ -9,15 +9,35 @@ import {
   MDBInput,
   MDBIcon,
 } from "mdb-react-ui-kit";
-import styles from "./LoginSingUp.module.css"; // Import stilizarea background-ului
-import { useNavigate } from "react-router-dom"; // Importă useNavigate
+import styles from "./LoginSignUp.module.css";
+import { useNavigate } from "react-router-dom";
+import { sendPasswordResetEmail } from "firebase/auth"; // Importă funcția de resetare
+import { auth } from "../../firebase"; // Importă instanța Firebase Auth
 
 function ForgotPassword() {
-  const navigate = useNavigate(); // Inițializează useNavigate
+  const [email, setEmail] = useState(""); // Stare pentru email
+  const [errorMessage, setErrorMessage] = useState(""); // Mesaj de eroare
+  const [successMessage, setSuccessMessage] = useState(""); // Mesaj de succes
+  const navigate = useNavigate();
 
-  const handleForgotPassword = () => {
-    // Aici ai putea adăuga logica de resetare a parolei
-    navigate("/"); // Redirecționează către pagina de login după resetare
+  const handleForgotPassword = async () => {
+    setErrorMessage(""); // Resetăm mesajele
+    setSuccessMessage("");
+
+    if (!email) {
+      setErrorMessage("Please enter a valid email address.");
+      return;
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, email); // Trimite emailul de resetare
+      setSuccessMessage(
+        "If this email is registered, you will receive a password reset link."
+      );
+      setTimeout(() => navigate("/"), 3000); // După 3 secunde, redirecționează către login
+    } catch (error) {
+      setErrorMessage("Something went wrong. Please try again."); // Mesaj generalizat
+    }
   };
 
   return (
@@ -30,7 +50,6 @@ function ForgotPassword() {
         }}
       >
         <MDBCardBody>
-          {/* Butonul de "Back" cu iconiță spre stânga */}
           <div className="d-flex justify-content-start mb-2">
             <MDBBtn
               color="primary"
@@ -59,7 +78,7 @@ function ForgotPassword() {
             <MDBCol
               md="10"
               lg="6"
-              className="order-2 order-lg-1 d-flex flex-column align-items-center"
+              className="order-2 order-lg-1 d-flex flex-column align-items-center justify-center"
             >
               <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                 Forgot Password
@@ -73,8 +92,16 @@ function ForgotPassword() {
                   type="email"
                   className="w-100 text-white custom-input"
                   labelClass="text-white"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
+
+              {/* Afișarea mesajelor de eroare și succes */}
+              {errorMessage && <p className="text-danger">{errorMessage}</p>}
+              {successMessage && (
+                <p className="text-success">{successMessage}</p>
+              )}
 
               <MDBBtn
                 className="mb-4"
@@ -98,7 +125,7 @@ function ForgotPassword() {
             >
               <img
                 alt="Your Company"
-                src="/ForgotLogo.svg" // Poți înlocui cu un logo specific pentru pagina ForgotPassword
+                src="/ForgotLogo.svg"
                 className="img-fluid mb-3 w-90 w-sm-75 w-md-50 w-lg-50 h-auto"
               />
             </MDBCol>

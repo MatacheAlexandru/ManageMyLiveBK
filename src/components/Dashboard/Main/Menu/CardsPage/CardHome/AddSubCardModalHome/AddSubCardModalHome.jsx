@@ -15,7 +15,6 @@ import {
   MDBDropdownItem,
 } from "mdb-react-ui-kit";
 import { IoTrashOutline } from "react-icons/io5";
-import "../../../../../../../Styles.css";
 
 const AddSubCardModal = ({ addModal, toggleAddModal, handleAddSubCard }) => {
   const [newCategory, setNewCategory] = useState("");

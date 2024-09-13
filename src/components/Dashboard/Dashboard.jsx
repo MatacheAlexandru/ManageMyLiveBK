@@ -2,15 +2,15 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Header from "./Header/Header";
 import Footer from "./Footer/Footer";
-import HomePage from "./Main/Menu/Home/Homepage";
-import AboutPage from "./Main/Menu/About/AboutPage";
-import CalendarPage from "./Main/Menu/Calendar/CalendarPage";
-import NotificationsPage from "./Main/Menu/Notifications/NotificationsPage";
-import ProfilePage from "./Main/Menu/Profile/ProfilePage";
+import HomePage from "./Main/Pages/Home/Homepage";
+import AboutPage from "./Main/Pages/About/AboutPage";
+import CalendarPage from "./Main/Pages/Calendar/CalendarPage";
+import NotificationsPage from "./Main/Pages/Notifications/NotificationsPage";
+import ProfilePage from "./Main/Pages/Profile/ProfilePage";
 
 const Dashboard = () => {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="z-1">
       <Header />
       <main className="flex-grow">
         <Routes>
