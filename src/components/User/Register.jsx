@@ -84,7 +84,6 @@ function Register() {
         }}
       >
         <MDBCardBody>
-          {/* Butonul de "Back" cu iconiță spre stânga */}
           <div className="d-flex justify-content-start mb-2">
             <MDBBtn
               color="primary"

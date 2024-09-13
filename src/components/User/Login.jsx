@@ -17,7 +17,6 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); // Stare pentru încărcare
 
   // Hook-ul pentru redirecționare
   const navigate = useNavigate();
@@ -73,7 +72,7 @@ function Login() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 labelClass="text-white"
-                className="text-white custom-input" // Aplică clasa personalizată
+                className="text-white custom-input"
               />
             </div>
 
@@ -85,7 +84,7 @@ function Login() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 labelClass="text-white"
-                className="text-white custom-input" // Aplică clasa personalizată
+                className="text-white custom-input"
               />
             </div>
           </div>
