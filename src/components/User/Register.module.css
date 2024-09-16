@@ -1,0 +1,180 @@
+/*------------------BACKGROUND------------------*/
+.customBackground {
+  padding-top: 1rem !important;
+  min-height: 100vh !important;
+  padding-left: 2rem !important;
+  padding-right: 2rem !important;
+}
+
+@media (min-width: 768px) {
+  .customBackground {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+}
+
+/*------------------CARD------------------*/
+.customCard {
+  border-radius: 25px !important;
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  margin: 2rem !important;
+}
+
+.customCardBody {
+  padding: 2rem !important;
+}
+
+/*------------------BACK BUTTON------------------*/
+.customBackButton {
+  display: inline-flex !important;
+  align-items: center !important;
+  background-color: #0371ee79 !important;
+  color: #fff !important;
+  outline: none;
+  border: none;
+  border-radius: 20px !important;
+  padding: 10px 20px !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: background-color 0.3s ease, transform 0.2s ease !important;
+}
+
+.customBackButton:hover {
+  background-color: #274b7791 !important;
+  outline: solid 1px white;
+}
+
+.customBackButton:active {
+  transform: scale(0.98) !important;
+}
+
+.customBackIcon {
+  margin-right: 8px !important;
+  font-size: 1.5rem !important;
+}
+
+/*------------------FORM ELEMENTS------------------*/
+.customTitle {
+  color: #fff !important;
+  text-align: center !important;
+  font-size: 2rem !important;
+  margin-bottom: 2rem !important;
+}
+.customLabel2 label {
+  color: rgb(2, 50, 112) !important;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.inputWrapper {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.customInput {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid rgb(194, 193, 193);
+  border-radius: 4px;
+  background-color: transparent;
+  color: white;
+  transition: all 0.3s ease;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.customLabel {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  font-size: 16px;
+  color: rgb(177, 177, 177);
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.customInput:focus,
+.customInput:not(:placeholder-shown) {
+  border: none;
+  outline: none;
+  border: 2px solid rgb(255, 255, 255);
+  background-color: rgba(88, 118, 252, 0.342);
+}
+
+.customInput:focus + .customLabel,
+.customInput:not(:placeholder-shown) + .customLabel {
+  top: -12px;
+  left: 5px;
+  font-size: 12px;
+  color: white;
+}
+
+.customInput::placeholder {
+  color: transparent;
+}
+/*------------------ERROR AND SUCCESS MESSAGES------------------*/
+.errorMessage {
+  color: red !important;
+  text-align: center !important;
+  margin-bottom: 1rem !important;
+}
+
+.successMessage {
+  color: green !important;
+  text-align: center !important;
+  margin-bottom: 1rem !important;
+}
+
+/*------------------SUBMIT BUTTON------------------*/
+.customSubmitButton {
+  background-color: #0371ee79 !important;
+  border-radius: 20px !important;
+  padding: 10px 20px !important;
+  transition: background-color 0.3s ease-in-out !important;
+  color: white !important;
+  width: 30% !important;
+  text-align: center !important;
+  outline: none;
+  border: none;
+  margin-top: 2rem;
+}
+
+.customSubmitButton:hover {
+  background-color: #274b77 !important;
+  outline: solid 2px white;
+}
+
+.customSubmitButton:active {
+  transform: scale(0.98) !important;
+}
+
+/*------------------IMAGE SECTION------------------*/
+
+.customImage {
+  max-width: 800px;
+  max-height: 400px;
+}
+@media (max-width: 780px) {
+  .rowPosition {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .customImage {
+    order: 3 !important; /* Mutăm imaginea sub celelalte elemente */
+    margin-top: 20px !important;
+  }
+
+  .customSubmitButton {
+    width: 60% !important;
+  }
+
+  .customLabel2 label {
+    font-size: 0.8rem;
+  }
+}

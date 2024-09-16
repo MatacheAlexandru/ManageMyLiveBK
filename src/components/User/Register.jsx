@@ -1,38 +1,37 @@
 import React, { useState } from "react";
 import {
-  MDBBtn,
   MDBContainer,
   MDBRow,
   MDBCol,
   MDBCard,
   MDBCardBody,
   MDBInput,
-  MDBIcon,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
-import styles from "./LoginSignUp.module.css";
-import { useNavigate } from "react-router-dom"; // Importă useNavigate
-import { createUserWithEmailAndPassword } from "firebase/auth"; // Importă funcția de înregistrare din Firebase
-import { auth } from "../../firebase"; // Importă instanța Firebase Auth
-import { setDoc, doc } from "firebase/firestore"; // Importă Firestore
-import { db } from "../../firebase"; // Importă instanța Firestore
+import { IoIosArrowBack } from "react-icons/io"; // Pentru iconița de back
+import styles from "./Register.module.css";
+import { useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebase";
+import { setDoc, doc } from "firebase/firestore"; // Pentru Firestore
+import { db } from "../../firebase";
+import LogoRegister from "./Logo/RegisterLogo/LogoRegister";
 
 function Register() {
-  // Stările pentru email, parolă, confirmare parolă, nume, eroare și succes
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const [loading, setLoading] = useState(false); // Stare pentru încărcare
+  const [loading, setLoading] = useState(false);
+  const [termsAccepted, setTermsAccepted] = useState(false); // Stare pentru checkbox-ul Termeni și Condiții
 
-  const navigate = useNavigate(); // Inițializează useNavigate
+  const navigate = useNavigate();
 
-  // Funcția pentru a gestiona înregistrarea
   const handleRegister = async () => {
-    setErrorMessage(""); // Resetăm mesajele de eroare
-    setSuccessMessage(""); // Resetăm mesajele de succes
+    setErrorMessage("");
+    setSuccessMessage("");
 
     if (password !== confirmPassword) {
       setErrorMessage("Passwords do not match.");
@@ -40,25 +39,24 @@ function Register() {
     }
 
     try {
-      setLoading(true); // Începem încărcarea
+      setLoading(true);
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-
       const user = userCredential.user;
 
-      // Salvează numele și emailul utilizatorului în Firestore
+      // Salvează datele utilizatorului în Firestore
       await setDoc(doc(db, "users", user.uid), {
-        name: name,
-        email: email,
+        name,
+        email,
       });
 
       setSuccessMessage("Account created successfully. Redirecting...");
       setTimeout(() => {
-        navigate("/"); // Redirecționează către pagina de login după înregistrare
-      }, 3000); // Redirecționează după 3 secunde
+        navigate("/");
+      }, 3000);
     } catch (error) {
       if (error.code === "auth/email-already-in-use") {
         setErrorMessage("Email is already in use.");
@@ -70,147 +68,111 @@ function Register() {
         setErrorMessage("Failed to create account. Please try again.");
       }
     } finally {
-      setLoading(false); // Oprim încărcarea
+      setLoading(false);
     }
   };
 
   return (
     <MDBContainer fluid className={styles.customBackground}>
-      <MDBCard
-        className="text-white m-2"
-        style={{
-          borderRadius: "25px",
-          backgroundColor: "rgba(255, 255, 255, 0.2)",
-        }}
-      >
-        <MDBCardBody>
+      <MDBCol className="d-flex justify-content-center align-items-center">
+        <LogoRegister className={styles.customImage} />
+      </MDBCol>
+      <MDBCard className={styles.customCard}>
+        <MDBCardBody className={styles.customCardBody}>
+          {/* Flexbox and layout for screen using Bootstrap */}
           <div className="d-flex justify-content-start mb-2">
-            <MDBBtn
-              color="primary"
-              style={{
-                backgroundColor: "#1f3b5b",
-                color: "#fff",
-                borderRadius: "20px",
-                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
-                padding: "10px 20px",
-                transition: "all 0.3s ease-in-out",
-              }}
+            <button
+              className={styles.customBackButton}
               onClick={() => navigate("/")}
-              onMouseOver={(e) =>
-                (e.currentTarget.style.backgroundColor = "#274b77")
-              }
-              onMouseOut={(e) =>
-                (e.currentTarget.style.backgroundColor = "#1f3b5b")
-              }
             >
-              <MDBIcon fas icon="arrow-left" size="lg" className="text-white" />
+              <IoIosArrowBack className={styles.customBackIcon} />
               Back
-            </MDBBtn>
+            </button>
           </div>
 
-          <MDBRow>
-            <MDBCol
-              md="10"
-              lg="6"
-              className="order-2 order-lg-1 d-flex flex-column align-items-center"
-            >
-              <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                Sign up
-              </p>
+          <MDBRow
+            className={`${styles.rowPosition} d-flex justify-content-between align-items-center`}
+          >
+            <MDBCol className="d-flex flex-column align-items-center">
+              <p className={styles.customTitle}>Sign up</p>
 
-              {/* Mesaje de eroare și succes */}
-              {errorMessage && <p className="text-danger">{errorMessage}</p>}
+              {errorMessage && (
+                <p className={styles.errorMessage}>{errorMessage}</p>
+              )}
               {successMessage && (
-                <p className="text-success">{successMessage}</p>
+                <p className={styles.successMessage}>{successMessage}</p>
               )}
 
-              {/* Input pentru numele utilizatorului */}
-              <div className="d-flex flex-row align-items-center mb-4 ">
-                <MDBIcon fas icon="user me-3" size="lg" />
-                <MDBInput
-                  label="Your Name"
-                  id="form1"
+              <div className={styles.inputWrapper}>
+                <input
+                  placeholder=" "
                   type="text"
-                  className="w-100 text-white custom-input"
-                  labelClass="text-white"
+                  className={styles.customInput}
                   value={name}
-                  onChange={(e) => setName(e.target.value)} // Actualizăm starea numelui
+                  onChange={(e) => setName(e.target.value)}
                 />
+                <label htmlFor="form1" className={styles.customLabel}>
+                  Your Name
+                </label>
               </div>
 
-              {/* Input pentru email */}
-              <div className="d-flex flex-row align-items-center mb-4">
-                <MDBIcon fas icon="envelope me-3" size="lg" />
-                <MDBInput
-                  label="Your Email"
-                  id="form2"
+              <div className={styles.inputWrapper}>
+                <input
+                  placeholder=" "
                   type="email"
-                  labelClass="text-white"
-                  className="text-white custom-input"
+                  className={styles.customInput}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
+                <label htmlFor="form1" className={styles.customLabel}>
+                  Your Email
+                </label>
               </div>
 
-              {/* Input pentru parolă */}
-              <div className="d-flex flex-row align-items-center mb-4">
-                <MDBIcon fas icon="lock me-3" size="lg" />
-                <MDBInput
-                  label="Password"
-                  id="form3"
+              <div className={styles.inputWrapper}>
+                <input
+                  placeholder=" "
                   type="password"
-                  labelClass="text-white"
-                  className="text-white custom-input"
+                  className={styles.customInput}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 />
+                <label htmlFor="form1" className={styles.customLabel}>
+                  Password
+                </label>
               </div>
 
-              {/* Input pentru confirmarea parolei */}
-              <div className="d-flex flex-row align-items-center mb-4">
-                <MDBIcon fas icon="key me-3" size="lg" />
-                <MDBInput
-                  label="Repeat your password"
-                  id="form4"
+              <div className={styles.inputWrapper}>
+                <input
+                  placeholder=" "
                   type="password"
-                  labelClass="text-white"
-                  className="text-white custom-input"
+                  className={styles.customInput}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                 />
+                <label htmlFor="form1" className={styles.customLabel}>
+                  Repeat your password
+                </label>
               </div>
 
-              {/* Checkbox pentru Termeni și condiții */}
-              <div className="mb-4">
+              <div className={styles.customLabel2}>
                 <MDBCheckbox
                   name="flexCheck"
                   value=""
                   id="flexCheckDefault"
                   label="I agree all statements in Terms of service"
+                  checked={termsAccepted} // Controlează dacă este bifat sau nu
+                  onChange={(e) => setTermsAccepted(e.target.checked)} // Actualizează starea
                 />
               </div>
 
-              {/* Buton de înregistrare */}
-              <MDBBtn
-                className="mb-4"
-                size="lg"
+              <button
+                className={styles.customSubmitButton}
                 onClick={handleRegister}
-                disabled={loading} // Dezactivăm butonul dacă se încarcă
+                disabled={loading || !termsAccepted} // Dezactivează butonul dacă nu sunt acceptați termenii
               >
                 {loading ? "Registering..." : "Register"}
-              </MDBBtn>
-            </MDBCol>
-
-            <MDBCol
-              md="10"
-              lg="6"
-              className="order-2 order-lg-2 d-flex align-items-center justify-content-center"
-            >
-              <img
-                alt="Your Company"
-                src="/RegisterLogo.svg"
-                className="img-fluid mb-3 w-90 w-sm-75 w-md-50 w-lg-50 h-auto"
-              />
+              </button>
             </MDBCol>
           </MDBRow>
         </MDBCardBody>

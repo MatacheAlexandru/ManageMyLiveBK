@@ -1,0 +1,244 @@
+import React, { useState, useEffect } from "react";
+
+import styles from "./LogoRegister.module.css";
+const LogoRegister = () => {
+  const [active, setActive] = useState(false);
+
+  // Activează animația după ce componenta este montată
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setActive(true);
+    }, 200); // Poți ajusta timpul
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <svg
+      version="1.1"
+      viewBox="0 0 2048 960"
+      max-width="800px"
+      max-height="400px"
+      xmlns="http://www.w3.org/2000/svg"
+      className={active ? styles.active : styles.svgDefault}
+    >
+      <path
+        transform="translate(413,49)"
+        d="m0 0h122l10 5 6 9 2 10 5 69v8l11 3 32 11 25 11 5 3v5l-14 18-9 12-16 21-12 16-3 3-7-1-18-7-28-7-27-4-14-1h-14l-28 2-23 4-24 7-21 8-24 12-21 14-13 10-11 10-8 7-11 12-11 14-9 13-12 20-11 23-10 30-5 23-3 27v24l3 30 5 24 10 30 10 22 10 17 8 12 10 13 12 14 13 13 11 9 18 14 18 11 16 8 16 7 24 8 22 5 25 3h38l22-3 25-5 26-9 5-2h7l12 15 14 19 10 13 12 16 5 7-1 5-16 8-19 8-36 12-4 50-2 27-2 10-4 6-6 5-4 2h-126l-6-3-7-8-2-5-2-19-4-58-1-7-36-12-24-10-27-14-4-1-9 7-12 11-11 9-12 11-11 9-7 6-10 4h-7l-9-4-10-9-15-16-60-60-3-6-1-9 3-10 13-15 12-14 9-10 9-11 10-11 1-4-15-30-8-18-9-25-5-16-1-1-53-4-29-2-10-5-6-8-1-4v-125l5-8 6-5 5-2 35-3 43-3 6-2 13-38 11-25 13-24-1-5-10-11-9-11-11-12-9-11-9-10-6-9-2-11 2-8 4-6 82-82 8-4h11l10 5 10 9 11 9 12 11 11 9 12 11 6 3 33-17 19-8 30-10 7-3 1-5 5-72 2-10 6-8 6-4z"
+        fill="#FEBC5D"
+        className={styles.svgelem1}
+      ></path>
+      <path
+        transform="translate(1264,361)"
+        d="m0 0h28l16 23 10 15 15 22 5 7v2l5-5 16-24 15-22 11-16 2-2h27v136h-31l-1-1v-78l-11 16-19 28-2 2h-22l-8-11-16-24-7-10-1 78h-32v-29l-1-1v-73z"
+        fill="#FDFDFC"
+        className={styles.svgelem2}
+      ></path>
+      <path
+        transform="translate(326,361)"
+        d="m0 0h27l11 15 10 15 22 32 4 6h2l7-11 8-12 11-16 19-28 1-1h27l1 30-1 106h-31v-78l-4 4-12 17-12 18-5 6h-19l-5-3-12-18-12-17-4-7-2-1v79h-31z"
+        fill="#FDFDFD"
+        className={styles.svgelem3}
+      ></path>
+      <path
+        transform="translate(991,358)"
+        d="m0 0h28l15 4 15 8 11 9 9 13 5 11-1 3h-32l-5-5-4-5-10-6-9-3h-14l-10 3-10 6-7 9-4 9-2 11v11l4 13 6 10 9 7 9 4 5 1h13l11-3 9-6 6-7 3-6 1-5h-42l-1-1v-23l44-1h28l6 2v11l-2 15-5 15-7 12-9 10-10 7-10 5-16 4h-27l-12-3-16-8-11-9-9-12-5-11-4-15-1-18 2-13 5-15 7-12 10-11 14-9 14-5z"
+        fill="#FDFDFD"
+        className={styles.svgelem4}
+      ></path>
+      <path
+        transform="translate(650,361)"
+        d="m0 0h28l13 19 10 13 12 17 13 18 7 10 4 4-1-3v-77l1-1h30v136h-27l-7-9-13-19-12-16-10-14-13-18-2-5h-2v81l-30 1-1-1z"
+        fill="#FEFDFD"
+        className={styles.svgelem5}
+      ></path>
+      <path
+        transform="translate(839,361)"
+        d="m0 0h31l5 10 14 36 22 55 11 28 3 7-3 1-32-1-9-22h-53l-8 21-1 1h-33l1-6 22-56 25-63 4-10zm15 40-5 12-12 32v4h36l-3-10-14-37z"
+        fill="#FDFDFD"
+        className={styles.svgelem6}
+      ></path>
+      <path
+        transform="translate(547,361)"
+        d="m0 0h31l5 11 19 48 12 30 15 38 4 9h-35l-5-12-4-10h-53l-9 22h-34l3-9 29-73 21-53zm15 41-4 8-13 35-1 4h37l-1-5-8-20-8-21z"
+        fill="#FDFDFD"
+        className={styles.svgelem7}
+      ></path>
+      <path
+        transform="translate(1913,360)"
+        d="m0 0h79l11 1v25l-3 1h-56v28h54v26l-32 1h-22l1 28h21l4 1 2-1 33 1v26h-92z"
+        fill="#FEFDFD"
+        className={styles.svgelem8}
+      ></path>
+      <path
+        transform="translate(1101,360)"
+        d="m0 0h70l20 1v25l-1 1h-58v28h53l1 1v25l-34 1h-20v29h60l1 1v25h-92z"
+        fill="#FEFDFD"
+        className={styles.svgelem9}
+      ></path>
+      <path
+        transform="translate(1803,361)"
+        d="m0 0h85v28h-54v34h49v27l-49 1v46h-31l-1-7v-81l2-4-2-2v-39z"
+        fill="#FEFDFD"
+        className={styles.svgelem10}
+      ></path>
+      <path
+        transform="translate(1432,361)"
+        d="m0 0h36l15 28 13 23 2 3 15-29 12-22 2-3h36l-8 15-15 27-8 14-13 23-5 9-1 27v21h-31l-1-47-13-24-14-24-14-25z"
+        fill="#FEFEFE"
+        className={styles.svgelem11}
+      ></path>
+      <path
+        transform="translate(1627,361)"
+        d="m0 0h31v108l22-1h22l16 1v28h-91z"
+        fill="#FEFEFE"
+        className={styles.svgelem12}
+      ></path>
+      <path
+        transform="translate(1739,361)"
+        d="m0 0h31v136h-31l-1-4v-131z"
+        fill="#FEFEFE"
+        className={styles.svgelem13}
+      ></path>
+      <path
+        transform="translate(633,665)"
+        d="m0 0h9l6 7 9 13 4 6 2 1 2-4 14-21 2-2h10l1 1v53l-12 1-1-1-1-26h-2l-9 12-9 1-4-4-7-11-2-1v29l-13 1v-54z"
+        fill="#91EDEF"
+        className={styles.svgelem14}
+      ></path>
+      <path
+        transform="translate(1e3 663)"
+        d="m0 0 12 1 10 5 7 8 1 6h-12l-7-6-2-1h-11l-6 4-3 5-1 8 3 10 6 5 10 1 8-4 3-7h-17v-9l2-1h28l1 1v8l-3 9-4 6-7 6-9 3h-12l-10-4-7-6-4-8-1-3v-15l4-10 7-7 8-4z"
+        fill="#91EEF0"
+        className={styles.svgelem15}
+      ></path>
+      <path
+        transform="translate(1097,560)"
+        d="m0 0h10l4 4 10 14 8 11 2 1v-29l1-1h11l1 1v53l-10 1-5-5-10-14-5-1-1-7-2-5h-2v31l-2 1h-10l-1-1v-45z"
+        fill="#91EDEE"
+        className={styles.svgelem16}
+      ></path>
+      <path
+        transform="translate(812,665)"
+        d="m0 0h10l8 10 9 12 2 1 3 6 2 1v-29l1-1h11l1 2v52h-12l-11-15-10-14-1-1-1 30h-12l-1-1v-52z"
+        fill="#91EDEF"
+        className={styles.svgelem17}
+      ></path>
+      <path
+        transform="translate(1030,558)"
+        d="m0 0 12 1 10 5 7 8 3 8v13l-3 9-9 10-11 4h-13l-9-3-8-7-4-8-1-3v-16l6-12 8-6 5-2zm-1 12-5 2-5 5-2 4v12l3 6 5 4 2 1h12l6-4 4-8v-10l-3-6-6-5-4-1z"
+        fill="#91EEF0"
+        className={styles.svgelem18}
+      ></path>
+      <path
+        transform="translate(432,558)"
+        d="m0 0 11 1 10 5 7 8 3 9v13l-4 10-8 8-11 4h-14l-12-6-5-6-4-9-1-10 2-9 5-8 8-7 6-2zm-1 12-7 3-4 4-2 4v12l3 6 5 4 2 1h11l6-3 4-5 1-3v-12l-5-8-8-3z"
+        fill="#91EEF0"
+        className={styles.svgelem19}
+      ></path>
+      <path
+        transform="translate(853,560)"
+        d="m0 0h29l8 4 4 5 2 5v10l-4 7-4 4 1 5 7 12-1 3h-12l-6-9-4-7-4-1h-4v16l-1 1h-11l-1-1v-53zm12 10-1 16 1 1h13l5-5v-7l-4-4-4-1z"
+        fill="#91EEF0"
+        className={styles.svgelem20}
+      ></path>
+      <path
+        transform="translate(580,560)"
+        d="m0 0h30l8 4 4 5 2 5v9l-3 7-6 5 2 5 7 12v2l-4 1h-8l-5-5-6-11-3-1h-5v16l-2 1h-10l-1-1zm13 10v17h13l5-5v-7l-4-4-5-1z"
+        fill="#91EEF0"
+        className={styles.svgelem21}
+      ></path>
+      <path
+        transform="translate(1139,665)"
+        d="m0 0h29l8 4 5 6 1 2v13l-5 8-3 2 1 5 8 13v1l-12 1-3-1-9-16h-8v16h-12l-1-5v-48zm13 10-1 1v16h13l5-4v-9l-3-3-6-1z"
+        fill="#91EEF0"
+        className={styles.svgelem22}
+      ></path>
+      <path
+        transform="translate(497,560)"
+        d="m0 0h12l1 3 1 34 3 5 1 1h10l4-5 1-36 1-2h11l1 1v37l-4 10-7 6-6 2h-12l-7-3-6-5-3-6-1-5z"
+        fill="#91EEF0"
+        className={styles.svgelem23}
+      ></path>
+      <path
+        transform="translate(946,558)"
+        d="m0 0 13 1 8 5 5 10-2 3-11-1-4-6h-12v7l8 4 12 4 7 6 2 4v9l-4 7-6 4-4 1h-14l-7-3-5-4-3-6v-6h12l3 6 4 2h7l4-3-1-5-5-3-15-5-7-6-2-5v-7l3-6 6-5z"
+        fill="#91EEF0"
+        className={styles.svgelem24}
+      ></path>
+      <path
+        transform="translate(1198,560)"
+        d="m0 0h10l3 3 9 21 11 28-1 3h-11l-3-4-2-5h-21l-3 8-4 1h-10l1-5 17-43 3-6zm5 17-5 12-1 6h14l-6-18z"
+        fill="#91EEF0"
+        className={styles.svgelem25}
+      ></path>
+      <path
+        transform="translate(913,665)"
+        d="m0 0h10l3 3 11 27 9 22v2l-12 1-2-1-3-8-22-1-1 6-2 3-13 1 1-6 17-43 3-5zm5 17-4 9-3 9h14l-1-6-5-12z"
+        fill="#91EEF0"
+        className={styles.svgelem26}
+      ></path>
+      <path
+        transform="translate(745,665)"
+        d="m0 0h11l3 3 18 45 2 6-12 1-3-3-2-7-21 1-4 8-13 1 1-6 15-38 4-10zm5 17-6 16v2h14l-1-5-5-13z"
+        fill="#91EEF0"
+        className={styles.svgelem27}
+      ></path>
+      <path
+        transform="translate(1566,560)"
+        d="m0 0h36v10l-7 1h-16v10h19l2 1v10h-21v11l24 1v10l-37 1-1-5v-44z"
+        fill="#91EEF0"
+        className={styles.svgelem28}
+      ></path>
+      <path
+        transform="translate(704,560)"
+        d="m0 0h26l8 3 5 4 3 6 1 10-3 8-7 6-6 2h-15v15l-1 1h-11l-1-1v-53zm12 11v17l2 1h8l6-3 2-5-1-6-4-4z"
+        fill="#91EEF0"
+        className={styles.svgelem29}
+      ></path>
+      <path
+        transform="translate(780,560)"
+        d="m0 0h36v10l-10 1h-13v10h19l2 1v10h-21v12h24v10l-37 1-1-4v-38z"
+        fill="#91EEF0"
+        className={styles.svgelem30}
+      ></path>
+      <path
+        transform="translate(1067,665)"
+        d="m0 0h36v10l-6 1h-17v10h20l1 1v9l-1 1h-20l1 11 22 1 1 1v9l-37 1z"
+        fill="#91EEF0"
+        className={styles.svgelem31}
+      ></path>
+      <path
+        transform="translate(1497,560)"
+        d="m0 0h34l1 1v9l-1 1h-21v14l19 1v10h-19v13l-1 5-11 1-1-1z"
+        fill="#91EEF0"
+        className={styles.svgelem32}
+      ></path>
+      <path
+        transform="translate(324,560)"
+        d="m0 0h13l5 8 7 12 4-5 7-13 2-2h13l-2 6-15 26-1 2-1 20-5 1h-7l-1-1-1-20-14-25-4-7z"
+        fill="#91EEF0"
+        className={styles.svgelem33}
+      ></path>
+      <path
+        transform="translate(1264,560)"
+        d="m0 0h11l1 1v42h24v11l-36 1-1-1v-53z"
+        fill="#91EEF0"
+        className={styles.svgelem34}
+      ></path>
+      <path
+        transform="translate(1377,560)"
+        d="m0 0h11l1 1v42h24v11l-36 1-1-1v-50z"
+        fill="#91EEF0"
+        className={styles.svgelem35}
+      ></path>
+      <path
+        transform="translate(1447,560)"
+        d="m0 0h12v54l-3 1h-9l-1-1v-53z"
+        fill="#91EEF0"
+        className={styles.svgelem36}
+      ></path>
+    </svg>
+  );
+};
+
+export default LogoRegister;

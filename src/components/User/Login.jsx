@@ -1,91 +1,100 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { MDBContainer, MDBCheckbox, MDBBtn } from "mdb-react-ui-kit";
+import styles from "./Login.module.css";
+import Logo from "./Logo/LoginLogo/LogoLogin";
 import {
-  MDBContainer,
-  MDBInput,
-  MDBCheckbox,
-  MDBBtn,
-  MDBIcon,
-} from "mdb-react-ui-kit";
-import { useNavigate } from "react-router-dom";
-import styles from "./LoginSignUp.module.css";
-import { signInWithEmailAndPassword } from "firebase/auth"; // Importă funcția de login
-import { auth } from "../../firebase"; // Importă instanța Firebase Auth
+  signInWithEmailAndPassword,
+  setPersistence,
+  browserLocalPersistence,
+  browserSessionPersistence,
+} from "firebase/auth";
+import { auth } from "../../firebase";
 
-function Login() {
-  // Starea pentru email, parolă și mesajele de eroare
+function Login({ startAnimation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-
-  // Hook-ul pentru redirecționare
+  const [loading, setLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const navigate = useNavigate();
 
-  // Funcția de autentificare
   const handleLogin = async (e) => {
     e.preventDefault();
-    setError(""); // Resetăm mesajele de eroare
-    setLoading(true); // Pornim încărcarea
+    setError("");
+    setLoading(true);
 
     try {
-      // Autentificare Firebase cu email și parolă
+      const persistence = rememberMe
+        ? browserLocalPersistence
+        : browserSessionPersistence;
+
+      await setPersistence(auth, persistence);
       await signInWithEmailAndPassword(auth, email, password);
-      // Autentificare reușită, redirecționare către dashboard
-      navigate("/dashboard");
+
+      // Pornim animația și apoi navigăm către Dashboard
+      startAnimation(() => navigate("/dashboard"));
     } catch (error) {
-      // Gestionăm erorile și afișăm un mesaj utilizatorului
-      if (error.code === "auth/wrong-password") {
-        setError("Invalid password. Please try again.");
-      } else if (error.code === "auth/user-not-found") {
-        setError("No account found with this email.");
-      } else {
-        setError("Login failed. Please try again.");
-      }
+      setError("Login failed. Please try again.");
     } finally {
-      setLoading(false); // Oprim starea de încărcare
+      setLoading(false);
     }
+  };
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    startAnimation(() => navigate("/signup"));
+  };
+
+  const handleForgotPassword = (e) => {
+    e.preventDefault();
+    startAnimation(() => navigate("/forgot"));
   };
 
   return (
     <section className={styles.customBackground}>
       <MDBContainer>
         <div className={styles.logoTitle}>
-          <img
-            alt="Your Company"
-            src="/Logo.svg"
-            className="h-[9rem] w-[11rem] mb-3"
-          />
-          <h3 className="text-center mb-4 text-white">Login</h3>
+          <Logo className={styles.logoImage} />
+          <h3 className={`${styles.loginTitle} text-white`}>Login</h3>
         </div>
 
-        {error && <p className="text-danger text-center">{error}</p>}
+        {error && <p className={styles.errorMessage}>{error}</p>}
         <form
           onSubmit={handleLogin}
           className="d-flex row justify-content-center px-lg-5"
         >
           <div className="d-flex flex-column justify-content-center align-items-center">
-            <div className="col-12 col-sm-11 col-md-10 col-lg-9 mb-4">
-              <MDBInput
-                label="Email address"
-                id="form1"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                labelClass="text-white"
-                className="text-white custom-input"
-              />
+            <div className={`${styles.inputContainer} mb-4`}>
+              <div className={styles.inputWrapper}>
+                <input
+                  placeholder="Email address"
+                  id="form1"
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={styles.customInput}
+                />
+                <label htmlFor="form1" className={styles.customLabel}>
+                  Email address
+                </label>
+              </div>
             </div>
 
-            <div className="col-12 col-sm-11 col-md-10 col-lg-9 mb-4">
-              <MDBInput
-                label="Password"
-                id="form2"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                labelClass="text-white"
-                className="text-white custom-input"
-              />
+            <div className={`${styles.inputContainer} mb-4`}>
+              <div className={styles.inputWrapper}>
+                <input
+                  placeholder="Password"
+                  id="form2"
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className={styles.customInput}
+                />
+                <label htmlFor="form2" className={styles.customLabel}>
+                  Password
+                </label>
+              </div>
             </div>
           </div>
 
@@ -96,11 +105,17 @@ function Login() {
                 value=""
                 id="flexCheckDefault"
                 label="Remember me"
-                labelClass="text-white"
+                className={styles.customCheckbox}
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
               />
             </div>
             <div className="d-flex justify-content-center justify-content-sm-start">
-              <Link to="/forgot" className={styles.darkBlueLink}>
+              <Link
+                to="/forgot"
+                onClick={handleForgotPassword}
+                className={styles.darkBlueLink}
+              >
                 Forgot password?
               </Link>
             </div>
@@ -108,60 +123,24 @@ function Login() {
 
           <MDBBtn
             type="submit"
-            className="mb-4 col-6 col-sm-3 col-md-3 col-lg-3"
-            disabled={loading} // Butonul este dezactivat dacă se încarcă
+            className={`${styles.submitButton} mb-4 col-6 col-sm-3 col-md-3 col-lg-3`}
+            disabled={loading}
           >
-            {loading ? "Signing in..." : "Sign in"}{" "}
-            {/* Afișează mesajul de încărcare */}
+            {loading ? "Signing in..." : "Sign in"}
           </MDBBtn>
         </form>
 
         <div className="text-center">
-          <p>
-            Not a member? <Link to="/signup">Register</Link>
+          <p className={styles.notAMemberText}>
+            Not a member?{" "}
+            <Link
+              to="/signup"
+              onClick={handleRegister}
+              className={styles.registerLink}
+            >
+              Register
+            </Link>
           </p>
-          <p>or sign up with:</p>
-
-          <div
-            className="d-flex justify-content-between mx-auto"
-            style={{ width: "40%" }}
-          >
-            <MDBBtn
-              tag="a"
-              color="none"
-              className="m-1"
-              style={{ color: "#1266f1" }}
-            >
-              <MDBIcon fab icon="facebook-f" size="sm" />
-            </MDBBtn>
-
-            <MDBBtn
-              tag="a"
-              color="none"
-              className="m-1"
-              style={{ color: "#1266f1" }}
-            >
-              <MDBIcon fab icon="twitter" size="sm" />
-            </MDBBtn>
-
-            <MDBBtn
-              tag="a"
-              color="none"
-              className="m-1"
-              style={{ color: "#1266f1" }}
-            >
-              <MDBIcon fab icon="google" size="sm" />
-            </MDBBtn>
-
-            <MDBBtn
-              tag="a"
-              color="none"
-              className="m-1"
-              style={{ color: "#1266f1" }}
-            >
-              <MDBIcon fab icon="github" size="sm" />
-            </MDBBtn>
-          </div>
         </div>
       </MDBContainer>
     </section>

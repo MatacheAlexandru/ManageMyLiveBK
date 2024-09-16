@@ -1,27 +1,26 @@
 import React, { useState } from "react";
 import {
-  MDBBtn,
   MDBContainer,
   MDBRow,
   MDBCol,
   MDBCard,
   MDBCardBody,
-  MDBInput,
-  MDBIcon,
 } from "mdb-react-ui-kit";
-import styles from "./LoginSignUp.module.css";
+import { IoIosArrowBack } from "react-icons/io";
+import styles from "./ForgotPassword.module.css";
 import { useNavigate } from "react-router-dom";
-import { sendPasswordResetEmail } from "firebase/auth"; // Importă funcția de resetare
-import { auth } from "../../firebase"; // Importă instanța Firebase Auth
+import { sendPasswordResetEmail } from "firebase/auth";
+import { auth } from "../../firebase";
+import LogoForgot from "./Logo/ForgotLogo/LogoForgot";
 
 function ForgotPassword() {
-  const [email, setEmail] = useState(""); // Stare pentru email
-  const [errorMessage, setErrorMessage] = useState(""); // Mesaj de eroare
-  const [successMessage, setSuccessMessage] = useState(""); // Mesaj de succes
+  const [email, setEmail] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
   const handleForgotPassword = async () => {
-    setErrorMessage(""); // Resetăm mesajele
+    setErrorMessage("");
     setSuccessMessage("");
 
     if (!email) {
@@ -30,104 +29,65 @@ function ForgotPassword() {
     }
 
     try {
-      await sendPasswordResetEmail(auth, email); // Trimite emailul de resetare
+      await sendPasswordResetEmail(auth, email);
       setSuccessMessage(
         "If this email is registered, you will receive a password reset link."
       );
-      setTimeout(() => navigate("/"), 3000); // După 3 secunde, redirecționează către login
+      setTimeout(() => navigate("/"), 3000);
     } catch (error) {
-      setErrorMessage("Something went wrong. Please try again."); // Mesaj generalizat
+      setErrorMessage("Something went wrong. Please try again.");
     }
   };
 
   return (
     <MDBContainer fluid className={styles.customBackground}>
-      <MDBCard
-        className="text-white m-2"
-        style={{
-          borderRadius: "25px",
-          backgroundColor: "rgba(255, 255, 255, 0.2)",
-        }}
-      >
-        <MDBCardBody>
-          <div className="d-flex justify-content-start mb-2">
-            <MDBBtn
-              color="primary"
-              style={{
-                backgroundColor: "#1f3b5b",
-                color: "#fff",
-                borderRadius: "20px",
-                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
-                padding: "10px 20px",
-                transition: "all 0.3s ease-in-out",
-              }}
+      <MDBCol className={styles.customColImage}>
+        <LogoForgot className={styles.customImage} />
+      </MDBCol>
+      <MDBCard className={styles.customCard}>
+        <MDBCardBody className={styles.customCardBody}>
+          <div className={styles.backButtonContainer}>
+            <button
+              className={styles.customBackButton}
               onClick={() => navigate("/")}
-              onMouseOver={(e) =>
-                (e.currentTarget.style.backgroundColor = "#274b77")
-              }
-              onMouseOut={(e) =>
-                (e.currentTarget.style.backgroundColor = "#1f3b5b")
-              }
             >
-              <MDBIcon fas icon="arrow-left" size="lg" className="text-white" />
+              <span className={styles.customBackIcon}>
+                <IoIosArrowBack />
+              </span>
               Back
-            </MDBBtn>
+            </button>
           </div>
 
-          <MDBRow>
-            <MDBCol
-              md="10"
-              lg="6"
-              className="order-2 order-lg-1 d-flex flex-column align-items-center justify-center"
-            >
-              <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                Forgot Password
-              </p>
+          <MDBRow className={styles.customRow}>
+            <MDBCol className={styles.customColForm}>
+              <p className={styles.customTitle}>Forgot Password</p>
 
-              <div className="d-flex flex-row align-items-center mb-4">
-                <MDBIcon fas icon="envelope me-3" size="lg" />
-                <MDBInput
-                  label="Your Email"
-                  id="form1"
+              <div className={styles.inputWrapper}>
+                <input
                   type="email"
-                  className="w-100 text-white custom-input"
-                  labelClass="text-white"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  className={styles.customInput}
+                  placeholder="Enter your email"
                 />
+                <label htmlFor="form1" className={styles.customLabel}>
+                  Your Email
+                </label>
               </div>
 
-              {/* Afișarea mesajelor de eroare și succes */}
-              {errorMessage && <p className="text-danger">{errorMessage}</p>}
+              {errorMessage && (
+                <p className={styles.errorMessage}>{errorMessage}</p>
+              )}
               {successMessage && (
-                <p className="text-success">{successMessage}</p>
+                <p className={styles.successMessage}>{successMessage}</p>
               )}
 
-              <MDBBtn
-                className="mb-4"
-                size="lg"
+              <button
+                className={styles.customSubmitButton}
                 onClick={handleForgotPassword}
-                style={{
-                  backgroundColor: "#1f3b5b",
-                  borderRadius: "20px",
-                  padding: "10px 20px",
-                  transition: "all 0.3s ease-in-out",
-                }}
               >
                 Reset Password
-              </MDBBtn>
-            </MDBCol>
-
-            <MDBCol
-              md="10"
-              lg="6"
-              className="order-2 order-lg-2 d-flex align-items-center justify-content-center"
-            >
-              <img
-                alt="Your Company"
-                src="/ForgotLogo.svg"
-                className="img-fluid mb-3 w-90 w-sm-75 w-md-50 w-lg-50 h-auto"
-              />
+              </button>
             </MDBCol>
           </MDBRow>
         </MDBCardBody>
